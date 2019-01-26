@@ -59,8 +59,8 @@ manifests: ## Generate manifests e.g. CRD, RBAC etc.
 	go run vendor/sigs.k8s.io/controller-tools/cmd/controller-gen/main.go all
 	@# Kubebuilder CRD generation can't handle intstr.IntOrString properly:
 	@# https://github.com/kubernetes-sigs/kubebuilder/issues/442
-	sed -i -e 's/maxSurge:/maxSurge: {}/g' -e '/maxSurge:/{n;d};' config/crds/cluster_v1alpha1_machinedeployment.yaml
-	sed -i -e 's/maxUnavailable:/maxUnavailable: {}/g' -e '/maxUnavailable:/{n;d};' config/crds/cluster_v1alpha1_machinedeployment.yaml
+	sed -i -e 's/maxSurge:/maxSurge: {}/g' -e '/maxSurge:/{n;d};' config/crds/cluster_v1beta1_machinedeployment.yaml
+	sed -i -e 's/maxUnavailable:/maxUnavailable: {}/g' -e '/maxUnavailable:/{n;d};' config/crds/cluster_v1beta1_machinedeployment.yaml
 
 .PHONY: fmt
 fmt: ## Run go fmt against code
