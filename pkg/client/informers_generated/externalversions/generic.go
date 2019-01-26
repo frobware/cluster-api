@@ -21,7 +21,7 @@ package externalversions
 import (
 	"fmt"
 
-	v1alpha1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
+	v1beta1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1beta1"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
 	cache "k8s.io/client-go/tools/cache"
 )
@@ -52,17 +52,17 @@ func (f *genericInformer) Lister() cache.GenericLister {
 // TODO extend this to unknown resources with a client pool
 func (f *sharedInformerFactory) ForResource(resource schema.GroupVersionResource) (GenericInformer, error) {
 	switch resource {
-	// Group=cluster.k8s.io, Version=v1alpha1
-	case v1alpha1.SchemeGroupVersion.WithResource("clusters"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Cluster().V1alpha1().Clusters().Informer()}, nil
-	case v1alpha1.SchemeGroupVersion.WithResource("machines"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Cluster().V1alpha1().Machines().Informer()}, nil
-	case v1alpha1.SchemeGroupVersion.WithResource("machineclasses"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Cluster().V1alpha1().MachineClasses().Informer()}, nil
-	case v1alpha1.SchemeGroupVersion.WithResource("machinedeployments"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Cluster().V1alpha1().MachineDeployments().Informer()}, nil
-	case v1alpha1.SchemeGroupVersion.WithResource("machinesets"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Cluster().V1alpha1().MachineSets().Informer()}, nil
+	// Group=cluster.openshift.io, Version=v1beta1
+	case v1beta1.SchemeGroupVersion.WithResource("clusters"):
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Cluster().V1beta1().Clusters().Informer()}, nil
+	case v1beta1.SchemeGroupVersion.WithResource("machines"):
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Cluster().V1beta1().Machines().Informer()}, nil
+	case v1beta1.SchemeGroupVersion.WithResource("machineclasses"):
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Cluster().V1beta1().MachineClasses().Informer()}, nil
+	case v1beta1.SchemeGroupVersion.WithResource("machinedeployments"):
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Cluster().V1beta1().MachineDeployments().Informer()}, nil
+	case v1beta1.SchemeGroupVersion.WithResource("machinesets"):
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Cluster().V1beta1().MachineSets().Informer()}, nil
 
 	}
 
