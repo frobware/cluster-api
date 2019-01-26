@@ -26,7 +26,7 @@ import (
 	"time"
 
 	"github.com/openshift/cluster-api/cmd/clusterctl/clientcmd"
-	clusterv1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
+	clusterv1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1beta1"
 	"github.com/openshift/cluster-api/pkg/client/clientset_generated/clientset"
 	"github.com/openshift/cluster-api/pkg/util"
 	apiv1 "k8s.io/api/core/v1"
@@ -53,7 +53,7 @@ type Client interface {
 	GetContextNamespace() string
 	Apply(string) error
 	Delete(string) error
-	WaitForClusterV1alpha1Ready() error
+	WaitForClusterV1beta1Ready() error
 	GetClusterObjectsInNamespace(string) ([]*clusterv1.Cluster, error)
 	GetClusterObject(string, string) (*clusterv1.Cluster, error)
 	GetMachineDeploymentObjects() ([]*clusterv1.MachineDeployment, error)
@@ -196,7 +196,7 @@ func (c *client) GetClusterObject(name, ns string) (*clusterv1.Cluster, error) {
 
 func (c *client) GetClusterObjectsInNamespace(namespace string) ([]*clusterv1.Cluster, error) {
 	clusters := []*clusterv1.Cluster{}
-	clusterlist, err := c.clientSet.ClusterV1alpha1().Clusters(namespace).List(metav1.ListOptions{})
+	clusterlist, err := c.clientSet.ClusterV1beta1().Clusters(namespace).List(metav1.ListOptions{})
 	if err != nil {
 		return nil, fmt.Errorf("error listing cluster objects in namespace %q: %v", namespace, err)
 	}
@@ -208,7 +208,7 @@ func (c *client) GetClusterObjectsInNamespace(namespace string) ([]*clusterv1.Cl
 }
 
 func (c *client) GetMachineDeploymentObjectsInNamespace(namespace string) ([]*clusterv1.MachineDeployment, error) {
-	machineDeploymentList, err := c.clientSet.ClusterV1alpha1().MachineDeployments(namespace).List(metav1.ListOptions{})
+	machineDeploymentList, err := c.clientSet.ClusterV1beta1().MachineDeployments(namespace).List(metav1.ListOptions{})
 	if err != nil {
 		return nil, fmt.Errorf("error listing machine deployment objects in namespace %q: %v", namespace, err)
 	}
@@ -226,7 +226,7 @@ func (c *client) GetMachineDeploymentObjects() ([]*clusterv1.MachineDeployment, 
 }
 
 func (c *client) GetMachineSetObjectsInNamespace(namespace string) ([]*clusterv1.MachineSet, error) {
-	machineSetList, err := c.clientSet.ClusterV1alpha1().MachineSets(namespace).List(metav1.ListOptions{})
+	machineSetList, err := c.clientSet.ClusterV1beta1().MachineSets(namespace).List(metav1.ListOptions{})
 	if err != nil {
 		return nil, fmt.Errorf("error listing machine set objects in namespace %q: %v", namespace, err)
 	}
@@ -245,7 +245,7 @@ func (c *client) GetMachineSetObjects() ([]*clusterv1.MachineSet, error) {
 
 func (c *client) GetMachineObjectsInNamespace(namespace string) ([]*clusterv1.Machine, error) {
 	machines := []*clusterv1.Machine{}
-	machineslist, err := c.clientSet.ClusterV1alpha1().Machines(namespace).List(metav1.ListOptions{})
+	machineslist, err := c.clientSet.ClusterV1beta1().Machines(namespace).List(metav1.ListOptions{})
 	if err != nil {
 		return nil, fmt.Errorf("error listing machine objects in namespace %q: %v", namespace, err)
 	}
@@ -268,7 +268,7 @@ func (c *client) CreateClusterObject(cluster *clusterv1.Cluster) error {
 		namespace = cluster.Namespace
 	}
 
-	_, err := c.clientSet.ClusterV1alpha1().Clusters(namespace).Create(cluster)
+	_, err := c.clientSet.ClusterV1beta1().Clusters(namespace).Create(cluster)
 	if err != nil {
 		return fmt.Errorf("error creating cluster in namespace %v: %v", namespace, err)
 	}
@@ -278,7 +278,7 @@ func (c *client) CreateClusterObject(cluster *clusterv1.Cluster) error {
 func (c *client) CreateMachineDeploymentObjects(deployments []*clusterv1.MachineDeployment, namespace string) error {
 	for _, deploy := range deployments {
 		// TODO: Run in parallel https://github.com/kubernetes-sigs/cluster-api/issues/258
-		_, err := c.clientSet.ClusterV1alpha1().MachineDeployments(namespace).Create(deploy)
+		_, err := c.clientSet.ClusterV1beta1().MachineDeployments(namespace).Create(deploy)
 		if err != nil {
 			return fmt.Errorf("error creating a machine deployment object in namespace %q: %v", namespace, err)
 		}
@@ -289,7 +289,7 @@ func (c *client) CreateMachineDeploymentObjects(deployments []*clusterv1.Machine
 func (c *client) CreateMachineSetObjects(machineSets []*clusterv1.MachineSet, namespace string) error {
 	for _, ms := range machineSets {
 		// TODO: Run in parallel https://github.com/kubernetes-sigs/cluster-api/issues/258
-		_, err := c.clientSet.ClusterV1alpha1().MachineSets(namespace).Create(ms)
+		_, err := c.clientSet.ClusterV1beta1().MachineSets(namespace).Create(ms)
 		if err != nil {
 			return fmt.Errorf("error creating a machine set object in namespace %q: %v", namespace, err)
 		}
@@ -310,7 +310,7 @@ func (c *client) CreateMachineObjects(machines []*clusterv1.Machine, namespace s
 		go func(machine *clusterv1.Machine) {
 			defer wg.Done()
 
-			createdMachine, err := c.clientSet.ClusterV1alpha1().Machines(namespace).Create(machine)
+			createdMachine, err := c.clientSet.ClusterV1beta1().Machines(namespace).Create(machine)
 			if err != nil {
 				errOnce.Do(func() {
 					gerr = fmt.Errorf("error creating a machine object in namespace %v: %v", namespace, err)
@@ -334,7 +334,7 @@ func (c *client) DeleteClusterObjects() error {
 }
 
 func (c *client) DeleteClusterObjectsInNamespace(namespace string) error {
-	err := c.clientSet.ClusterV1alpha1().Clusters(namespace).DeleteCollection(newDeleteOptions(), metav1.ListOptions{})
+	err := c.clientSet.ClusterV1beta1().Clusters(namespace).DeleteCollection(newDeleteOptions(), metav1.ListOptions{})
 	if err != nil {
 		return fmt.Errorf("error deleting cluster objects in namespace %q: %v", namespace, err)
 	}
@@ -352,7 +352,7 @@ func (c *client) DeleteMachineDeploymentObjects() error {
 }
 
 func (c *client) DeleteMachineDeploymentObjectsInNamespace(namespace string) error {
-	err := c.clientSet.ClusterV1alpha1().MachineDeployments(namespace).DeleteCollection(newDeleteOptions(), metav1.ListOptions{})
+	err := c.clientSet.ClusterV1beta1().MachineDeployments(namespace).DeleteCollection(newDeleteOptions(), metav1.ListOptions{})
 	if err != nil {
 		return fmt.Errorf("error deleting machine deployment objects in namespace %q: %v", namespace, err)
 	}
@@ -370,7 +370,7 @@ func (c *client) DeleteMachineSetObjects() error {
 }
 
 func (c *client) DeleteMachineSetObjectsInNamespace(namespace string) error {
-	err := c.clientSet.ClusterV1alpha1().MachineSets(namespace).DeleteCollection(newDeleteOptions(), metav1.ListOptions{})
+	err := c.clientSet.ClusterV1beta1().MachineSets(namespace).DeleteCollection(newDeleteOptions(), metav1.ListOptions{})
 	if err != nil {
 		return fmt.Errorf("error deleting machine set objects in namespace %q: %v", namespace, err)
 	}
@@ -388,7 +388,7 @@ func (c *client) DeleteMachineObjects() error {
 }
 
 func (c *client) DeleteMachineObjectsInNamespace(namespace string) error {
-	err := c.clientSet.ClusterV1alpha1().Machines(namespace).DeleteCollection(newDeleteOptions(), metav1.ListOptions{})
+	err := c.clientSet.ClusterV1beta1().Machines(namespace).DeleteCollection(newDeleteOptions(), metav1.ListOptions{})
 	if err != nil {
 		return fmt.Errorf("error deleting machine objects in namespace %q: %v", namespace, err)
 	}
@@ -417,18 +417,18 @@ func (c *client) UpdateClusterObjectEndpoint(masterIP, clusterName, namespace st
 			Host: masterIP,
 			Port: apiServerPort,
 		})
-	_, err = c.clientSet.ClusterV1alpha1().Clusters(namespace).UpdateStatus(cluster)
+	_, err = c.clientSet.ClusterV1beta1().Clusters(namespace).UpdateStatus(cluster)
 	return err
 }
 
-func (c *client) WaitForClusterV1alpha1Ready() error {
+func (c *client) WaitForClusterV1beta1Ready() error {
 	return waitForClusterResourceReady(c.clientSet)
 }
 
 func (c *client) waitForClusterDelete(namespace string) error {
 	return util.PollImmediate(retryIntervalResourceDelete, timeoutResourceDelete, func() (bool, error) {
 		klog.V(2).Infof("Waiting for cluster objects to be deleted...")
-		response, err := c.clientSet.ClusterV1alpha1().Clusters(namespace).List(metav1.ListOptions{})
+		response, err := c.clientSet.ClusterV1beta1().Clusters(namespace).List(metav1.ListOptions{})
 		if err != nil {
 			return false, nil
 		}
@@ -442,7 +442,7 @@ func (c *client) waitForClusterDelete(namespace string) error {
 func (c *client) waitForMachineDeploymentsDelete(namespace string) error {
 	return util.PollImmediate(retryIntervalResourceDelete, timeoutResourceDelete, func() (bool, error) {
 		klog.V(2).Infof("Waiting for machine deployment objects to be deleted...")
-		response, err := c.clientSet.ClusterV1alpha1().MachineDeployments(namespace).List(metav1.ListOptions{})
+		response, err := c.clientSet.ClusterV1beta1().MachineDeployments(namespace).List(metav1.ListOptions{})
 		if err != nil {
 			return false, nil
 		}
@@ -456,7 +456,7 @@ func (c *client) waitForMachineDeploymentsDelete(namespace string) error {
 func (c *client) waitForMachineSetsDelete(namespace string) error {
 	return util.PollImmediate(retryIntervalResourceDelete, timeoutResourceDelete, func() (bool, error) {
 		klog.V(2).Infof("Waiting for machine set objects to be deleted...")
-		response, err := c.clientSet.ClusterV1alpha1().MachineSets(namespace).List(metav1.ListOptions{})
+		response, err := c.clientSet.ClusterV1beta1().MachineSets(namespace).List(metav1.ListOptions{})
 		if err != nil {
 			return false, nil
 		}
@@ -470,7 +470,7 @@ func (c *client) waitForMachineSetsDelete(namespace string) error {
 func (c *client) waitForMachinesDelete(namespace string) error {
 	return util.PollImmediate(retryIntervalResourceDelete, timeoutResourceDelete, func() (bool, error) {
 		klog.V(2).Infof("Waiting for machine objects to be deleted...")
-		response, err := c.clientSet.ClusterV1alpha1().Machines(namespace).List(metav1.ListOptions{})
+		response, err := c.clientSet.ClusterV1beta1().Machines(namespace).List(metav1.ListOptions{})
 		if err != nil {
 			return false, nil
 		}
@@ -548,7 +548,7 @@ func waitForClusterResourceReady(cs clientset.Interface) error {
 	deadline := time.Now().Add(timeoutResourceReady)
 	err := util.PollImmediate(retryIntervalResourceReady, timeoutResourceReady, func() (bool, error) {
 		klog.V(2).Info("Waiting for Cluster v1alpha resources to become available...")
-		_, err := cs.Discovery().ServerResourcesForGroupVersion("cluster.k8s.io/v1alpha1")
+		_, err := cs.Discovery().ServerResourcesForGroupVersion("cluster.openshift.io/v1beta1")
 		if err == nil {
 			return true, nil
 		}
@@ -561,7 +561,7 @@ func waitForClusterResourceReady(cs clientset.Interface) error {
 	timeout := time.Until(deadline)
 	return util.PollImmediate(retryIntervalResourceReady, timeout, func() (bool, error) {
 		klog.V(2).Info("Waiting for Cluster v1alpha resources to be listable...")
-		_, err := cs.ClusterV1alpha1().Clusters(apiv1.NamespaceDefault).List(metav1.ListOptions{})
+		_, err := cs.ClusterV1beta1().Clusters(apiv1.NamespaceDefault).List(metav1.ListOptions{})
 		if err == nil {
 			return true, nil
 		}
@@ -572,7 +572,7 @@ func waitForClusterResourceReady(cs clientset.Interface) error {
 func waitForMachineReady(cs clientset.Interface, machine *clusterv1.Machine) error {
 	err := util.PollImmediate(retryIntervalResourceReady, timeoutMachineReady, func() (bool, error) {
 		klog.V(2).Infof("Waiting for Machine %v to become ready...", machine.Name)
-		m, err := cs.ClusterV1alpha1().Machines(machine.Namespace).Get(machine.Name, metav1.GetOptions{})
+		m, err := cs.ClusterV1beta1().Machines(machine.Namespace).Get(machine.Name, metav1.GetOptions{})
 		if err != nil {
 			return false, nil
 		}

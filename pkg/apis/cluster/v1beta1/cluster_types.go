@@ -24,7 +24,7 @@ import (
 	"k8s.io/apimachinery/pkg/util/validation/field"
 )
 
-const ClusterFinalizer = "cluster.k8s.io"
+const ClusterFinalizer = "cluster.openshift.io"
 
 // +genclient
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object

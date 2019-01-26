@@ -93,7 +93,7 @@ clientset: ## Generate a typed clientset
 
 .PHONY: docker-build
 docker-build: generate fmt vet manifests ## Build the docker image
-	docker build . -t ${IMG}
+	imagebuilder -t ${IMG} .
 	@echo "updating kustomize image patch file for manager resource"
 	sed -i'' -e 's@image: .*@image: '"${IMG}"'@' ./config/default/manager_image_patch.yaml
 

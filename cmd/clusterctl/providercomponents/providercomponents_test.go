@@ -21,7 +21,7 @@ import (
 	"testing"
 
 	"github.com/openshift/cluster-api/cmd/clusterctl/providercomponents"
-	"github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
+	"github.com/openshift/cluster-api/pkg/apis/cluster/v1beta1"
 	core "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
 	meta "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -73,7 +73,7 @@ func TestSaveToConfigMap(t *testing.T) {
 	providerComponentsContent := "content\nmore content >>"
 	configMapName := "clusterctl"
 	providerComponentsKey := "provider-components"
-	notFoundErr := errors.NewNotFound(v1alpha1.Resource("configmap"), configMapName)
+	notFoundErr := errors.NewNotFound(v1beta1.Resource("configmap"), configMapName)
 	testCases := []struct {
 		name                 string
 		getResult            *core.ConfigMap

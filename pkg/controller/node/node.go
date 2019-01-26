@@ -24,14 +24,14 @@ import (
 
 	"context"
 
-	"github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
+	"github.com/openshift/cluster-api/pkg/apis/cluster/v1beta1"
 	"github.com/openshift/cluster-api/pkg/controller/noderefutil"
 	"github.com/openshift/cluster-api/pkg/util"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 )
 
 const (
-	machineAnnotationKey = "cluster.k8s.io/machine"
+	machineAnnotationKey = "cluster.openshift.io/machine"
 )
 
 // We are using "machine" annotation to link node and machine resource. The "machine"
@@ -65,7 +65,7 @@ func (c *ReconcileNode) link(node *corev1.Node) error {
 	namespace = util.GetNamespaceOrDefault(namespace)
 	key := client.ObjectKey{Namespace: namespace, Name: mach}
 
-	machine := &v1alpha1.Machine{}
+	machine := &v1beta1.Machine{}
 	if err = c.Client.Get(context.Background(), key, machine); err != nil {
 		klog.Errorf("Error getting machine %v: %v\n", mach, err)
 		return err
@@ -99,7 +99,7 @@ func (c *ReconcileNode) unlink(node *corev1.Node) error {
 	namespace = util.GetNamespaceOrDefault(namespace)
 	key := client.ObjectKey{Namespace: namespace, Name: mach}
 
-	machine := &v1alpha1.Machine{}
+	machine := &v1beta1.Machine{}
 	if err = c.Client.Get(context.Background(), key, machine); err != nil {
 		klog.Errorf("Error getting machine %v: %v\n", mach, err)
 		return err
