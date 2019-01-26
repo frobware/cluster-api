@@ -17,9 +17,9 @@ limitations under the License.
 package cmd_runner_test
 
 import (
+	"github.com/openshift/cluster-api/pkg/cmd-runner"
 	"io/ioutil"
 	"os"
-	"sigs.k8s.io/cluster-api/pkg/cmd-runner"
 	"testing"
 )
 

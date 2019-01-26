@@ -25,14 +25,14 @@ import (
 	"sync"
 	"time"
 
+	"github.com/openshift/cluster-api/cmd/clusterctl/clientcmd"
+	clusterv1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
+	"github.com/openshift/cluster-api/pkg/client/clientset_generated/clientset"
+	"github.com/openshift/cluster-api/pkg/util"
 	apiv1 "k8s.io/api/core/v1"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	tcmd "k8s.io/client-go/tools/clientcmd"
-	"sigs.k8s.io/cluster-api/cmd/clusterctl/clientcmd"
-	clusterv1 "sigs.k8s.io/cluster-api/pkg/apis/cluster/v1alpha1"
-	"sigs.k8s.io/cluster-api/pkg/client/clientset_generated/clientset"
-	"sigs.k8s.io/cluster-api/pkg/util"
 
 	"k8s.io/klog"
 )

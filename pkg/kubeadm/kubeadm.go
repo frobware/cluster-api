@@ -20,7 +20,7 @@ import (
 	"strings"
 	"time"
 
-	"sigs.k8s.io/cluster-api/pkg/cmd-runner"
+	"github.com/openshift/cluster-api/pkg/cmd-runner"
 )
 
 // The purpose of Kubeadm and this file is to provide a unit tested wrapper around the 'kubeadm' exec command. Higher

@@ -18,14 +18,14 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/openshift/cluster-api/pkg/apis"
 	"os"
-	"sigs.k8s.io/cluster-api/pkg/apis"
 	"sigs.k8s.io/controller-runtime/pkg/manager"
 
 	"github.com/spf13/cobra"
 
+	"github.com/openshift/cluster-api/cmd/clusterctl/validation"
 	tcmd "k8s.io/client-go/tools/clientcmd"
-	"sigs.k8s.io/cluster-api/cmd/clusterctl/validation"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/client/config"
 )

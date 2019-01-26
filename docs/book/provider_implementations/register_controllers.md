@@ -23,8 +23,8 @@ limitations under the License.
 package controller
 
 import (
-        "sigs.k8s.io/cluster-api-provider-solas/pkg/cloud/solas/actuators/cluster"
-        capicluster "sigs.k8s.io/cluster-api/pkg/controller/cluster"
+        "github.com/openshift/cluster-api-provider-solas/pkg/cloud/solas/actuators/cluster"
+        capicluster "github.com/openshift/cluster-api/pkg/controller/cluster"
         "sigs.k8s.io/controller-runtime/pkg/manager"
 )
 
@@ -63,8 +63,8 @@ limitations under the License.
 package controller
 
 import (
-        "sigs.k8s.io/cluster-api-provider-solas/pkg/cloud/solas/actuators/machine"
-        capimachine "sigs.k8s.io/cluster-api/pkg/controller/machine"
+        "github.com/openshift/cluster-api-provider-solas/pkg/cloud/solas/actuators/machine"
+        capimachine "github.com/openshift/cluster-api/pkg/controller/machine"
         "sigs.k8s.io/controller-runtime/pkg/manager"
 )
 

@@ -19,9 +19,9 @@ package phases
 import (
 	"fmt"
 
+	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/bootstrap"
+	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/clusterclient"
 	"k8s.io/klog"
-	"sigs.k8s.io/cluster-api/cmd/clusterctl/clusterdeployer/bootstrap"
-	"sigs.k8s.io/cluster-api/cmd/clusterctl/clusterdeployer/clusterclient"
 )
 
 func CreateBootstrapCluster(provisioner bootstrap.ClusterProvisioner, cleanupBootstrapCluster bool, clientFactory clusterclient.Factory) (clusterclient.Client, func(), error) {

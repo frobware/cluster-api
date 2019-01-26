@@ -18,8 +18,8 @@ package test_cmd_runner_test
 
 import (
 	"fmt"
+	"github.com/openshift/cluster-api/pkg/test-cmd-runner"
 	"os"
-	"sigs.k8s.io/cluster-api/pkg/test-cmd-runner"
 	"strings"
 	"testing"
 )

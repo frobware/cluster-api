@@ -37,9 +37,9 @@ the `TestMachineSet` tests will fail if you don't have `etcd` installed and the 
 panic: exec: "etcd": executable file not found in $PATH
 
 goroutine 131 [running]:
-sigs.k8s.io/cluster-api/vendor/github.com/kubernetes-incubator/apiserver-builder/pkg/test.(*TestEnvironment).startEtcd(0xc420704000, 0xc4206c8de0)
+github.com/openshift/cluster-api/vendor/github.com/kubernetes-incubator/apiserver-builder/pkg/test.(*TestEnvironment).startEtcd(0xc420704000, 0xc4206c8de0)
 .
 .
 .
-FAIL	sigs.k8s.io/cluster-api/pkg/controller/machineset	0.077s
+FAIL	github.com/openshift/cluster-api/pkg/controller/machineset	0.077s
 ```

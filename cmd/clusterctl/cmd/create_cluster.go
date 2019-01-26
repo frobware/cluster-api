@@ -20,15 +20,15 @@ import (
 	"fmt"
 	"io/ioutil"
 
+	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer"
+	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/bootstrap"
+	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/bootstrap/existing"
+	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/bootstrap/minikube"
+	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/clusterclient"
+	clustercommon "github.com/openshift/cluster-api/pkg/apis/cluster/common"
+	"github.com/openshift/cluster-api/pkg/util"
 	"github.com/spf13/cobra"
 	"k8s.io/klog"
-	"sigs.k8s.io/cluster-api/cmd/clusterctl/clusterdeployer"
-	"sigs.k8s.io/cluster-api/cmd/clusterctl/clusterdeployer/bootstrap"
-	"sigs.k8s.io/cluster-api/cmd/clusterctl/clusterdeployer/bootstrap/existing"
-	"sigs.k8s.io/cluster-api/cmd/clusterctl/clusterdeployer/bootstrap/minikube"
-	"sigs.k8s.io/cluster-api/cmd/clusterctl/clusterdeployer/clusterclient"
-	clustercommon "sigs.k8s.io/cluster-api/pkg/apis/cluster/common"
-	"sigs.k8s.io/cluster-api/pkg/util"
 )
 
 type CreateOptions struct {

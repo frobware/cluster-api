@@ -19,11 +19,11 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/bootstrap/minikube"
+	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/clusterclient"
+	"github.com/openshift/cluster-api/cmd/clusterctl/phases"
 	"github.com/spf13/cobra"
 	"k8s.io/klog"
-	"sigs.k8s.io/cluster-api/cmd/clusterctl/clusterdeployer/bootstrap/minikube"
-	"sigs.k8s.io/cluster-api/cmd/clusterctl/clusterdeployer/clusterclient"
-	"sigs.k8s.io/cluster-api/cmd/clusterctl/phases"
 )
 
 type AlphaPhaseCreateBootstrapClusterOptions struct {

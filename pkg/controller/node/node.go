@@ -24,9 +24,9 @@ import (
 
 	"context"
 
-	"sigs.k8s.io/cluster-api/pkg/apis/cluster/v1alpha1"
-	"sigs.k8s.io/cluster-api/pkg/controller/noderefutil"
-	"sigs.k8s.io/cluster-api/pkg/util"
+	"github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
+	"github.com/openshift/cluster-api/pkg/controller/noderefutil"
+	"github.com/openshift/cluster-api/pkg/util"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 )
 
