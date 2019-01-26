@@ -25,8 +25,8 @@ import (
 	meta "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/types"
 	"k8s.io/apimachinery/pkg/watch"
-	"sigs.k8s.io/cluster-api/cmd/clusterctl/providercomponents"
-	"sigs.k8s.io/cluster-api/pkg/apis/cluster/v1alpha1"
+	"github.com/openshift/cluster-api/cmd/clusterctl/providercomponents"
+	"github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
 )
 
 func TestLoadFromConfigMap(t *testing.T) {

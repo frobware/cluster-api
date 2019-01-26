@@ -22,11 +22,11 @@ import (
 	v1 "k8s.io/api/core/v1"
 	tcmd "k8s.io/client-go/tools/clientcmd"
 	"k8s.io/klog"
-	"sigs.k8s.io/cluster-api/cmd/clusterctl/clientcmd"
-	"sigs.k8s.io/cluster-api/cmd/clusterctl/clusterdeployer"
-	"sigs.k8s.io/cluster-api/cmd/clusterctl/clusterdeployer/bootstrap"
-	"sigs.k8s.io/cluster-api/cmd/clusterctl/clusterdeployer/clusterclient"
-	"sigs.k8s.io/cluster-api/cmd/clusterctl/providercomponents"
+	"github.com/openshift/cluster-api/cmd/clusterctl/clientcmd"
+	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer"
+	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/bootstrap"
+	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/clusterclient"
+	"github.com/openshift/cluster-api/cmd/clusterctl/providercomponents"
 )
 
 type DeleteOptions struct {

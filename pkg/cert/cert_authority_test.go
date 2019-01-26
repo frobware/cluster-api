@@ -20,7 +20,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path"
-	"sigs.k8s.io/cluster-api/pkg/cert"
+	"github.com/openshift/cluster-api/pkg/cert"
 	"testing"
 )
 

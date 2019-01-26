@@ -34,8 +34,8 @@ import (
 	"k8s.io/client-go/util/integer"
 	"k8s.io/klog"
 
-	"sigs.k8s.io/cluster-api/pkg/apis/cluster/common"
-	"sigs.k8s.io/cluster-api/pkg/apis/cluster/v1alpha1"
+	"github.com/openshift/cluster-api/pkg/apis/cluster/common"
+	"github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
 )
 
 const (

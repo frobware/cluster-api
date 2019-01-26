@@ -31,10 +31,10 @@ import (
 	apirand "k8s.io/apimachinery/pkg/util/rand"
 	"k8s.io/client-go/util/retry"
 	"k8s.io/klog"
-	clusterv1alpha1 "sigs.k8s.io/cluster-api/pkg/apis/cluster/v1alpha1"
+	clusterv1alpha1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	dutil "sigs.k8s.io/cluster-api/pkg/controller/machinedeployment/util"
+	dutil "github.com/openshift/cluster-api/pkg/controller/machinedeployment/util"
 )
 
 // sync is responsible for reconciling deployments on scaling events or when they

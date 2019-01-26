@@ -32,9 +32,9 @@ import (
 	"k8s.io/apimachinery/pkg/util/intstr"
 	"k8s.io/apiserver/pkg/storage/names"
 	core "k8s.io/client-go/testing"
-	"sigs.k8s.io/cluster-api/pkg/apis/cluster/common"
-	"sigs.k8s.io/cluster-api/pkg/apis/cluster/v1alpha1"
-	"sigs.k8s.io/cluster-api/pkg/client/clientset_generated/clientset/fake"
+	"github.com/openshift/cluster-api/pkg/apis/cluster/common"
+	"github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
+	"github.com/openshift/cluster-api/pkg/client/clientset_generated/clientset/fake"
 )
 
 func addListMSReactor(fakeClient *fake.Clientset, obj runtime.Object) *fake.Clientset {

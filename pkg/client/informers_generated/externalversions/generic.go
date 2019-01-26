@@ -23,7 +23,7 @@ import (
 
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
 	cache "k8s.io/client-go/tools/cache"
-	v1alpha1 "sigs.k8s.io/cluster-api/pkg/apis/cluster/v1alpha1"
+	v1alpha1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
 )
 
 // GenericInformer is type of SharedIndexInformer which will locate and delegate to other

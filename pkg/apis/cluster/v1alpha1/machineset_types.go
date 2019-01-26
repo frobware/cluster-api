@@ -24,7 +24,7 @@ import (
 
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/apimachinery/pkg/util/validation/field"
-	"sigs.k8s.io/cluster-api/pkg/apis/cluster/common"
+	"github.com/openshift/cluster-api/pkg/apis/cluster/common"
 )
 
 // +genclient
