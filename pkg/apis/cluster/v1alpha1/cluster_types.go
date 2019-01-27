@@ -20,8 +20,8 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 
-	"k8s.io/apimachinery/pkg/util/validation/field"
 	"github.com/openshift/cluster-api/pkg/apis/cluster/common"
+	"k8s.io/apimachinery/pkg/util/validation/field"
 )
 
 const ClusterFinalizer = "cluster.cluster.k8s.io"

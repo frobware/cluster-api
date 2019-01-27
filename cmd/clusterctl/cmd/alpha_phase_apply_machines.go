@@ -19,12 +19,12 @@ package cmd
 import (
 	"io/ioutil"
 
-	"github.com/pkg/errors"
-	"github.com/spf13/cobra"
-	"k8s.io/klog"
 	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/clusterclient"
 	"github.com/openshift/cluster-api/cmd/clusterctl/phases"
 	"github.com/openshift/cluster-api/pkg/util"
+	"github.com/pkg/errors"
+	"github.com/spf13/cobra"
+	"k8s.io/klog"
 )
 
 type AlphaPhaseApplyMachinesOptions struct {

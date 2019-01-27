@@ -17,10 +17,10 @@ limitations under the License.
 package phases
 
 import (
-	"github.com/pkg/errors"
-	"k8s.io/klog"
 	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/bootstrap"
 	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/clusterclient"
+	"github.com/pkg/errors"
+	"k8s.io/klog"
 )
 
 func CreateBootstrapCluster(provisioner bootstrap.ClusterProvisioner, cleanupBootstrapCluster bool, clientFactory clusterclient.Factory) (clusterclient.Client, func(), error) {

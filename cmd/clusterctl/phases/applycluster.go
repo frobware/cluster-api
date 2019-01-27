@@ -17,10 +17,10 @@ limitations under the License.
 package phases
 
 import (
-	"github.com/pkg/errors"
-	"k8s.io/klog"
 	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/clusterclient"
 	clusterv1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
+	"github.com/pkg/errors"
+	"k8s.io/klog"
 )
 
 func ApplyCluster(client clusterclient.Client, cluster *clusterv1.Cluster) error {

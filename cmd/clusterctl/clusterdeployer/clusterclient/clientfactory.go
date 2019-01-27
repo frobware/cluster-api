@@ -17,8 +17,8 @@ limitations under the License.
 package clusterclient
 
 import (
-	"k8s.io/client-go/kubernetes"
 	"github.com/openshift/cluster-api/cmd/clusterctl/clientcmd"
+	"k8s.io/client-go/kubernetes"
 )
 
 // Factory can create cluster clients

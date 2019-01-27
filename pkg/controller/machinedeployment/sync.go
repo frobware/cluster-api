@@ -23,6 +23,7 @@ import (
 	"sort"
 	"strconv"
 
+	clusterv1alpha1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
 	"github.com/pkg/errors"
 	"k8s.io/apimachinery/pkg/api/equality"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
@@ -31,7 +32,6 @@ import (
 	apirand "k8s.io/apimachinery/pkg/util/rand"
 	"k8s.io/client-go/util/retry"
 	"k8s.io/klog"
-	clusterv1alpha1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
 	dutil "github.com/openshift/cluster-api/pkg/controller/machinedeployment/util"

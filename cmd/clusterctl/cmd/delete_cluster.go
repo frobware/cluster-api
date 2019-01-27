@@ -17,16 +17,16 @@ limitations under the License.
 package cmd
 
 import (
-	"github.com/pkg/errors"
-	"github.com/spf13/cobra"
-	v1 "k8s.io/api/core/v1"
-	tcmd "k8s.io/client-go/tools/clientcmd"
-	"k8s.io/klog"
 	"github.com/openshift/cluster-api/cmd/clusterctl/clientcmd"
 	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer"
 	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/bootstrap"
 	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/clusterclient"
 	"github.com/openshift/cluster-api/cmd/clusterctl/providercomponents"
+	"github.com/pkg/errors"
+	"github.com/spf13/cobra"
+	v1 "k8s.io/api/core/v1"
+	tcmd "k8s.io/client-go/tools/clientcmd"
+	"k8s.io/klog"
 )
 
 type DeleteOptions struct {

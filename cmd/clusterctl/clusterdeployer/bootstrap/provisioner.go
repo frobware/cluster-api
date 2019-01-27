@@ -17,10 +17,10 @@ limitations under the License.
 package bootstrap
 
 import (
-	"github.com/pkg/errors"
 	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/bootstrap/existing"
 	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/bootstrap/kind"
 	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/bootstrap/minikube"
+	"github.com/pkg/errors"
 )
 
 // Can provision a kubernetes cluster

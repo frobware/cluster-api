@@ -19,8 +19,8 @@ package machineset
 import (
 	"testing"
 
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 func TestHasMatchingLabels(t *testing.T) {

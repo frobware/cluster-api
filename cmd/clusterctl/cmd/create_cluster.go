@@ -19,14 +19,14 @@ package cmd
 import (
 	"io/ioutil"
 
-	"github.com/pkg/errors"
-	"github.com/spf13/cobra"
-	"k8s.io/klog"
 	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer"
 	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/bootstrap"
 	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/clusterclient"
 	clustercommon "github.com/openshift/cluster-api/pkg/apis/cluster/common"
 	"github.com/openshift/cluster-api/pkg/util"
+	"github.com/pkg/errors"
+	"github.com/spf13/cobra"
+	"k8s.io/klog"
 )
 
 type CreateOptions struct {

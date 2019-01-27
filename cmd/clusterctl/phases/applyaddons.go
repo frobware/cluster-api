@@ -17,8 +17,8 @@ limitations under the License.
 package phases
 
 import (
-	"k8s.io/klog"
 	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/clusterclient"
+	"k8s.io/klog"
 )
 
 func ApplyAddons(client clusterclient.Client, addons string) error {

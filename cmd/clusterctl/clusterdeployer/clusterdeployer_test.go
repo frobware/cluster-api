@@ -22,12 +22,12 @@ import (
 	"os"
 	"testing"
 
+	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/clusterclient"
+	clusterv1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
 	"github.com/pkg/errors"
 	apiv1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
-	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/clusterclient"
-	clusterv1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
 )
 
 type testClusterProvisioner struct {
