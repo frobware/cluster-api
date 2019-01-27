@@ -20,7 +20,7 @@ import (
 	"testing"
 	"time"
 
-	clusterv1alpha1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
+	clusterv1beta1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1beta1"
 	"golang.org/x/net/context"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/types"
@@ -36,10 +36,10 @@ var expectedRequest = reconcile.Request{NamespacedName: types.NamespacedName{Nam
 const timeout = time.Second * 5
 
 func TestReconcile(t *testing.T) {
-	instance := &clusterv1alpha1.Machine{
+	instance := &clusterv1beta1.Machine{
 		ObjectMeta: metav1.ObjectMeta{Name: "foo", Namespace: "default"},
-		Spec: clusterv1alpha1.MachineSpec{
-			Versions: clusterv1alpha1.MachineVersionInfo{Kubelet: "1.10.3"},
+		Spec: clusterv1beta1.MachineSpec{
+			Versions: clusterv1beta1.MachineVersionInfo{Kubelet: "1.10.3"},
 		},
 	}
 

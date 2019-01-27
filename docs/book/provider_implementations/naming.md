@@ -28,7 +28,7 @@ identifies it.
   `SolasMachineSpec` and `SolasMachineStatus` could be the provider specific
   API for `Machine` resources.
 * The resource *Version* defines the stability of the API and its backward 
-  compatibility guarantees. Examples include v1alpha1, v1beta1, v1, etc.
+  compatibility guarantees. Examples include v1beta1, v1beta1, v1, etc.
   and are governed by the Kubernetes API Deprecation Policy [^1].
 * The resource *Group* is similar to package in a language.  It disambiguates 
   different APIs that may happen to have identically named *Kind*s.  Groups 
@@ -37,13 +37,13 @@ identifies it.
 
 {% sample lang="yaml" %}
 ```yaml
-apiVersion: solas.cluster.k8s.io/v1alpha1
+apiVersion: solas.cluster.k8s.io/v1beta1
 kind: SolasMachineSpec
 ```
 
 {% sample lang="yaml" %}
 ```yaml
-apiVersion: solas.cluster.k8s.io/v1alpha1
+apiVersion: solas.cluster.k8s.io/v1beta1
 kind: SolasMachineStatus
 ```
 {% endmethod %}

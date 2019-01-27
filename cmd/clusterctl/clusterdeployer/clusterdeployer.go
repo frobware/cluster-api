@@ -25,7 +25,7 @@ import (
 	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/bootstrap"
 	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/clusterclient"
 	"github.com/openshift/cluster-api/cmd/clusterctl/phases"
-	clusterv1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
+	clusterv1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1beta1"
 	"github.com/openshift/cluster-api/pkg/util"
 	"github.com/pkg/errors"
 	"k8s.io/client-go/kubernetes"
@@ -297,12 +297,12 @@ func waitForKubeconfigReady(provider ProviderDeployer, cluster *clusterv1.Cluste
 }
 
 func pivotNamespace(from, to clusterclient.Client, namespace string) error {
-	if err := from.WaitForClusterV1alpha1Ready(); err != nil {
-		return errors.New("cluster v1alpha1 resource not ready on source cluster")
+	if err := from.WaitForClusterV1beta1Ready(); err != nil {
+		return errors.New("cluster v1beta1 resource not ready on source cluster")
 	}
 
-	if err := to.WaitForClusterV1alpha1Ready(); err != nil {
-		return errors.New("cluster v1alpha1 resource not ready on target cluster")
+	if err := to.WaitForClusterV1beta1Ready(); err != nil {
+		return errors.New("cluster v1beta1 resource not ready on target cluster")
 	}
 
 	clusters, err := from.GetClusterObjectsInNamespace(namespace)

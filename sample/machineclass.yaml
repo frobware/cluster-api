@@ -1,11 +1,11 @@
 # Sample machine-class object
-apiVersion: "cluster.k8s.io/v1alpha1"
+apiVersion: "cluster.k8s.io/v1beta1"
 kind: MachineClass
 metadata:
   name: small
   namespace: foo
 providerSpec:
-  apiVersion: "gceproviderconfig/v1alpha1"
+  apiVersion: "gceproviderconfig/v1beta1"
   kind: "GCEProviderConfig"
   project: "$GCLOUD_PROJECT"
   zone: "us-central1-f"
@@ -15,7 +15,7 @@ providerSpec:
 ---
 
 # Sample machine object
-apiVersion: cluster.k8s.io/v1alpha1
+apiVersion: cluster.k8s.io/v1beta1
 kind: Machine
 metadata:
   name: test-machine

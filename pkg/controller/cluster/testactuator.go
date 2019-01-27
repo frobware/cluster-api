@@ -19,7 +19,7 @@ package cluster
 import (
 	"sync"
 
-	"github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
+	"github.com/openshift/cluster-api/pkg/apis/cluster/v1beta1"
 )
 
 type TestActuator struct {
@@ -31,7 +31,7 @@ type TestActuator struct {
 	Lock               sync.Mutex
 }
 
-func (a *TestActuator) Reconcile(*v1alpha1.Cluster) error {
+func (a *TestActuator) Reconcile(*v1beta1.Cluster) error {
 	defer func() {
 		if a.BlockOnReconcile {
 			<-a.unblock
@@ -44,7 +44,7 @@ func (a *TestActuator) Reconcile(*v1alpha1.Cluster) error {
 	return nil
 }
 
-func (a *TestActuator) Delete(*v1alpha1.Cluster) error {
+func (a *TestActuator) Delete(*v1beta1.Cluster) error {
 	defer func() {
 		if a.BlockOnDelete {
 			<-a.unblock

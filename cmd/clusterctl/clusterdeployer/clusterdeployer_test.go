@@ -23,7 +23,7 @@ import (
 	"testing"
 
 	"github.com/openshift/cluster-api/cmd/clusterctl/clusterdeployer/clusterclient"
-	clusterv1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
+	clusterv1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1beta1"
 	"github.com/pkg/errors"
 	apiv1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -88,7 +88,7 @@ func (m *mockProviderComponentsStore) Load() (string, error) {
 type testClusterClient struct {
 	ApplyErr                                      error
 	DeleteErr                                     error
-	WaitForClusterV1alpha1ReadyErr                error
+	WaitForClusterV1beta1ReadyErr                 error
 	GetClusterObjectsErr                          error
 	GetClusterObjectErr                           error
 	GetClusterObjectsInNamespaceErr               error
@@ -138,8 +138,8 @@ func (c *testClusterClient) GetContextNamespace() string {
 	return c.contextNamespace
 }
 
-func (c *testClusterClient) WaitForClusterV1alpha1Ready() error {
-	return c.WaitForClusterV1alpha1ReadyErr
+func (c *testClusterClient) WaitForClusterV1beta1Ready() error {
+	return c.WaitForClusterV1beta1ReadyErr
 }
 
 func (c *testClusterClient) GetClusterObjects() ([]*clusterv1.Cluster, error) {
@@ -520,7 +520,7 @@ func TestClusterCreate(t *testing.T) {
 		{
 			name:                                "fail waiting for api ready on bootstrap cluster",
 			targetClient:                        &testClusterClient{},
-			bootstrapClient:                     &testClusterClient{WaitForClusterV1alpha1ReadyErr: errors.New("Test failure")},
+			bootstrapClient:                     &testClusterClient{WaitForClusterV1beta1ReadyErr: errors.New("Test failure")},
 			namespaceToExpectedInternalMachines: make(map[string]int),
 			namespaceToInputCluster:             map[string][]*clusterv1.Cluster{metav1.NamespaceDefault: getClustersForNamespace(metav1.NamespaceDefault, 1)},
 			cleanupExternal:                     true,
@@ -589,7 +589,7 @@ func TestClusterCreate(t *testing.T) {
 		},
 		{
 			name:                                "fail wait for api ready on target cluster",
-			targetClient:                        &testClusterClient{WaitForClusterV1alpha1ReadyErr: errors.New("Test failure")},
+			targetClient:                        &testClusterClient{WaitForClusterV1beta1ReadyErr: errors.New("Test failure")},
 			bootstrapClient:                     &testClusterClient{},
 			namespaceToExpectedInternalMachines: make(map[string]int),
 			namespaceToInputCluster:             map[string][]*clusterv1.Cluster{metav1.NamespaceDefault: getClustersForNamespace(metav1.NamespaceDefault, 1)},

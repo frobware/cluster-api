@@ -66,14 +66,14 @@ func main() {
         }
 
         clusterActuator, err := cluster.NewActuator(cluster.ActuatorParams{
-                ClustersGetter: cs.ClusterV1alpha1(),
+                ClustersGetter: cs.ClusterV1beta1(),
         })
         if err != nil {
                 panic(err)
         }
 
         machineActuator, err := machine.NewActuator(machine.ActuatorParams{
-                MachinesGetter: cs.ClusterV1alpha1(),
+                MachinesGetter: cs.ClusterV1beta1(),
         })
         if err != nil {
                 panic(err)

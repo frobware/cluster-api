@@ -53,12 +53,12 @@ n
 
 {% sample lang="bash" %}
 ```bash
-kubebuilder create api --group solas --version v1alpha1 --kind SolasClusterProviderSpec
-kubebuilder create api --group solas --version v1alpha1 --kind SolasClusterProviderStatus
+kubebuilder create api --group solas --version v1beta1 --kind SolasClusterProviderSpec
+kubebuilder create api --group solas --version v1beta1 --kind SolasClusterProviderStatus
 ```
 ```bash
-kubebuilder create api --group solas --version v1alpha1 --kind SolasMachineProviderSpec
-kubebuilder create api --group solas --version v1alpha1 --kind SolasMachineProviderStatus
+kubebuilder create api --group solas --version v1beta1 --kind SolasMachineProviderSpec
+kubebuilder create api --group solas --version v1beta1 --kind SolasMachineProviderStatus
 ```
 
 ```bash

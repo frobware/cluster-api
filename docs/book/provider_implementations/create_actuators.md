@@ -31,8 +31,8 @@ import (
         "fmt"
         "log"
 
-        clusterv1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
-        client "github.com/openshift/cluster-api/pkg/client/clientset_generated/clientset/typed/cluster/v1alpha1"
+        clusterv1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1beta1"
+        client "github.com/openshift/cluster-api/pkg/client/clientset_generated/clientset/typed/cluster/v1beta1"
 )
 
 // Actuator is responsible for performing cluster reconciliation
@@ -94,8 +94,8 @@ import (
         "fmt"
         "log"
 
-        clusterv1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
-        client "github.com/openshift/cluster-api/pkg/client/clientset_generated/clientset/typed/cluster/v1alpha1"
+        clusterv1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1beta1"
+        client "github.com/openshift/cluster-api/pkg/client/clientset_generated/clientset/typed/cluster/v1beta1"
 )
 
 const (

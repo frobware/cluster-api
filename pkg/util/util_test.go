@@ -23,7 +23,7 @@ import (
 )
 
 const validCluster = `
-apiVersion: "cluster.k8s.io/v1alpha1"
+apiVersion: "cluster.k8s.io/v1beta1"
 kind: Cluster
 metadata:
   name: cluster1 
@@ -31,7 +31,7 @@ spec:`
 
 const validMachines = `
 items:
-- apiVersion: "cluster.k8s.io/v1alpha1"
+- apiVersion: "cluster.k8s.io/v1beta1"
   kind: Machine
   metadata:
     name: machine1

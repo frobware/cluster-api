@@ -9,26 +9,26 @@ which implement their intent by modifying provider-specific `Cluster` and
 ## MachineSet
 
 {% sample lang="go" %}
-[import:'MachineSet'](../../../pkg/apis/cluster/v1alpha1/machineset_types.go)
+[import:'MachineSet'](../../../pkg/apis/cluster/v1beta1/machineset_types.go)
 {% endmethod %}
 
 {% method %}
 ## MachineSetSpec
 
 {% sample lang="go" %}
-[import:'MachineSetSpec'](../../../pkg/apis/cluster/v1alpha1/machineset_types.go)
+[import:'MachineSetSpec'](../../../pkg/apis/cluster/v1beta1/machineset_types.go)
 {% endmethod %}
 
 {% method %}
 ## MachineSetTemplateSpec
 
 {% sample lang="go" %}
-[import:'MachineSetTemplateSpec'](../../../pkg/apis/cluster/v1alpha1/machineset_types.go)
+[import:'MachineSetTemplateSpec'](../../../pkg/apis/cluster/v1beta1/machineset_types.go)
 {% endmethod %}
 
 {% method %}
 ## MachineSetStatus
 
 {% sample lang="go" %}
-[import:'MachineSetStatus'](../../../pkg/apis/cluster/v1alpha1/machineset_types.go)
+[import:'MachineSetStatus'](../../../pkg/apis/cluster/v1beta1/machineset_types.go)
 {% endmethod %}

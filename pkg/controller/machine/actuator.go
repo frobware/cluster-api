@@ -19,7 +19,7 @@ package machine
 import (
 	"context"
 
-	clusterv1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
+	clusterv1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1beta1"
 )
 
 /// [Actuator]

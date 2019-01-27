@@ -19,8 +19,8 @@ package cluster
 import (
 	"context"
 
-	clusterv1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
-	clusterv1alpha1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
+	clusterv1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1beta1"
+	clusterv1beta1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1beta1"
 	controllerError "github.com/openshift/cluster-api/pkg/controller/error"
 	"github.com/openshift/cluster-api/pkg/util"
 	"k8s.io/apimachinery/pkg/api/errors"
@@ -54,7 +54,7 @@ func add(mgr manager.Manager, r reconcile.Reconciler) error {
 	}
 
 	// Watch for changes to Cluster
-	err = c.Watch(&source.Kind{Type: &clusterv1alpha1.Cluster{}}, &handler.EnqueueRequestForObject{})
+	err = c.Watch(&source.Kind{Type: &clusterv1beta1.Cluster{}}, &handler.EnqueueRequestForObject{})
 	if err != nil {
 		return err
 	}
@@ -73,7 +73,7 @@ type ReconcileCluster struct {
 
 // +kubebuilder:rbac:groups=cluster.k8s.io,resources=clusters,verbs=get;list;watch;create;update;patch;delete
 func (r *ReconcileCluster) Reconcile(request reconcile.Request) (reconcile.Result, error) {
-	cluster := &clusterv1alpha1.Cluster{}
+	cluster := &clusterv1beta1.Cluster{}
 	err := r.Get(context.Background(), request.NamespacedName, cluster)
 	if err != nil {
 		if errors.IsNotFound(err) {

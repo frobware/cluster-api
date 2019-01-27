@@ -19,7 +19,7 @@ limitations under the License.
 package clientset
 
 import (
-	clusterv1alpha1 "github.com/openshift/cluster-api/pkg/client/clientset_generated/clientset/typed/cluster/v1alpha1"
+	clusterv1beta1 "github.com/openshift/cluster-api/pkg/client/clientset_generated/clientset/typed/cluster/v1beta1"
 	discovery "k8s.io/client-go/discovery"
 	rest "k8s.io/client-go/rest"
 	flowcontrol "k8s.io/client-go/util/flowcontrol"
@@ -27,27 +27,27 @@ import (
 
 type Interface interface {
 	Discovery() discovery.DiscoveryInterface
-	ClusterV1alpha1() clusterv1alpha1.ClusterV1alpha1Interface
+	ClusterV1beta1() clusterv1beta1.ClusterV1beta1Interface
 	// Deprecated: please explicitly pick a version if possible.
-	Cluster() clusterv1alpha1.ClusterV1alpha1Interface
+	Cluster() clusterv1beta1.ClusterV1beta1Interface
 }
 
 // Clientset contains the clients for groups. Each group has exactly one
 // version included in a Clientset.
 type Clientset struct {
 	*discovery.DiscoveryClient
-	clusterV1alpha1 *clusterv1alpha1.ClusterV1alpha1Client
+	clusterV1beta1 *clusterv1beta1.ClusterV1beta1Client
 }
 
-// ClusterV1alpha1 retrieves the ClusterV1alpha1Client
-func (c *Clientset) ClusterV1alpha1() clusterv1alpha1.ClusterV1alpha1Interface {
-	return c.clusterV1alpha1
+// ClusterV1beta1 retrieves the ClusterV1beta1Client
+func (c *Clientset) ClusterV1beta1() clusterv1beta1.ClusterV1beta1Interface {
+	return c.clusterV1beta1
 }
 
 // Deprecated: Cluster retrieves the default version of ClusterClient.
 // Please explicitly pick a version.
-func (c *Clientset) Cluster() clusterv1alpha1.ClusterV1alpha1Interface {
-	return c.clusterV1alpha1
+func (c *Clientset) Cluster() clusterv1beta1.ClusterV1beta1Interface {
+	return c.clusterV1beta1
 }
 
 // Discovery retrieves the DiscoveryClient
@@ -66,7 +66,7 @@ func NewForConfig(c *rest.Config) (*Clientset, error) {
 	}
 	var cs Clientset
 	var err error
-	cs.clusterV1alpha1, err = clusterv1alpha1.NewForConfig(&configShallowCopy)
+	cs.clusterV1beta1, err = clusterv1beta1.NewForConfig(&configShallowCopy)
 	if err != nil {
 		return nil, err
 	}
@@ -82,7 +82,7 @@ func NewForConfig(c *rest.Config) (*Clientset, error) {
 // panics if there is an error in the config.
 func NewForConfigOrDie(c *rest.Config) *Clientset {
 	var cs Clientset
-	cs.clusterV1alpha1 = clusterv1alpha1.NewForConfigOrDie(c)
+	cs.clusterV1beta1 = clusterv1beta1.NewForConfigOrDie(c)
 
 	cs.DiscoveryClient = discovery.NewDiscoveryClientForConfigOrDie(c)
 	return &cs
@@ -91,7 +91,7 @@ func NewForConfigOrDie(c *rest.Config) *Clientset {
 // New creates a new Clientset for the given RESTClient.
 func New(c rest.Interface) *Clientset {
 	var cs Clientset
-	cs.clusterV1alpha1 = clusterv1alpha1.New(c)
+	cs.clusterV1beta1 = clusterv1beta1.New(c)
 
 	cs.DiscoveryClient = discovery.NewDiscoveryClient(c)
 	return &cs
