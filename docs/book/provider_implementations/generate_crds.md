@@ -4,8 +4,8 @@
 
 {% sample lang="bash" %}
 ```bash
-mkdir ${GOPATH}/src/sigs.k8s.io/cluster-api-provider-solas
-cd ${GOPATH}/src/sigs.k8s.io/cluster-api-provider-solas
+mkdir ${GOPATH}/src/github.com/openshift/cluster-api-provider-solas
+cd ${GOPATH}/src/github.com/openshift/cluster-api-provider-solas
 git init
 ```
 {% endmethod %}
