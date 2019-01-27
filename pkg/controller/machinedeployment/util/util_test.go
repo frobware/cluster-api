@@ -106,7 +106,7 @@ func generateMSWithLabel(labels map[string]string, image string) v1beta1.Machine
 func newDControllerRef(d *v1beta1.MachineDeployment) *metav1.OwnerReference {
 	isController := true
 	return &metav1.OwnerReference{
-		APIVersion: "clusters/v1alpha",
+		APIVersion: "clusters/v1beta1",
 		Kind:       "MachineDeployment",
 		Name:       d.GetName(),
 		UID:        d.GetUID(),

@@ -37,7 +37,7 @@ go_test(
         "machine_types_test.go",
         "machinedeployment_types_test.go",
         "machineset_types_test.go",
-        "v1alpha1_suite_test.go",
+        "v1beta1_suite_test.go",
     ],
     embed = [":go_default_library"],
     deps = [

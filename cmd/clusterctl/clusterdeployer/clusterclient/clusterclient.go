@@ -546,7 +546,7 @@ func (c *client) waitForKubectlApply(manifest string) error {
 func waitForClusterResourceReady(cs clientset.Interface) error {
 	deadline := time.Now().Add(timeoutResourceReady)
 	err := util.PollImmediate(retryIntervalResourceReady, timeoutResourceReady, func() (bool, error) {
-		klog.V(2).Info("Waiting for Cluster v1alpha resources to become available...")
+		klog.V(2).Info("Waiting for Cluster v1beta1 resources to become available...")
 		_, err := cs.Discovery().ServerResourcesForGroupVersion("cluster.k8s.io/v1beta1")
 		if err == nil {
 			return true, nil
@@ -559,7 +559,7 @@ func waitForClusterResourceReady(cs clientset.Interface) error {
 	}
 	timeout := time.Until(deadline)
 	return util.PollImmediate(retryIntervalResourceReady, timeout, func() (bool, error) {
-		klog.V(2).Info("Waiting for Cluster v1alpha resources to be listable...")
+		klog.V(2).Info("Waiting for Cluster v1beta1 resources to be listable...")
 		_, err := cs.ClusterV1beta1().Clusters(apiv1.NamespaceDefault).List(metav1.ListOptions{})
 		if err == nil {
 			return true, nil
