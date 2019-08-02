@@ -253,7 +253,10 @@ func (r *ReconcileMachineSet) reconcile(ctx context.Context, machineSet *machine
 		filteredMachines = append(filteredMachines, machineSetMachines[machineName])
 	}
 
-	syncErr := r.syncReplicas(machineSet, filteredMachines)
+	var syncErr error
+	if machineSet.DeletionTimestamp == nil {
+		syncErr = r.syncReplicas(machineSet, filteredMachines)
+	}
 
 	ms := machineSet.DeepCopy()
 	newStatus := r.calculateStatus(ms, filteredMachines)
